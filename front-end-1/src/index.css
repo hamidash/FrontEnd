@@ -1,0 +1,209 @@
+
+html, html>body, body>#root, #root>div, #root>div>div {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+header {
+  border: 2px solid black;
+  margin: 1% auto 2% auto;
+  width: 90%;
+  background:rgb(18, 171, 218)
+}
+
+.class {
+  border: 2px solid blue;
+  margin: 1% 1%;
+  box-shadow: 1px -1px 1px 1px rgb(0, 255, 179);
+  border-radius: 20px;
+}
+
+.instructor{
+  display: flex;
+  flex-direction: column;
+  margin: 1% auto;
+}
+
+
+
+.profile-img{
+  width: 20%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.instructor-top {
+  width: 90%;
+  margin: 0% auto;
+}
+
+.instructor-top h1, img, h3, button {
+  margin: 1% 1%;
+  
+}
+
+.instructor-top img {
+  width: 30%;
+  border-radius: 50%;
+}
+
+.instructor-top .card {
+  background-color: lightgray;
+}
+
+.instructor-bottom > div{
+  width: 90%;
+  margin: 1% auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(115 186 236 / 5%);
+  border-radius: 10px;
+}
+
+.instructor-bottom .btn-group {
+  margin-top: 5px;
+}
+
+.instructor-bottom .card {
+  margin: 1% auto;
+  width: 40%;
+  height: auto;
+}
+
+
+.class-edit{
+  display:flex;
+  width: 90%;
+  margin: 1% auto;
+  
+}
+
+.class-details, .punch-passes{
+  margin: 1% auto;
+  /* border: 2px solid black; */
+  width: 45%;
+}
+
+.pass {
+  margin: 3% auto;
+  border: 2px solid black;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 1px 2px rgb(118, 118, 238);
+  background-color: #268275;
+  color: white;
+}
+
+.pass > h2, .pass > h4 {
+  margin: 2% auto;
+  width: 70%;
+} 
+
+.class-details > h2, .punch-passes > h2, .punch-passes > .button {
+  margin: 2% 30% auto;
+}
+
+
+
+form {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  /* border: 2px solid black; */
+  margin: 0 auto;
+}
+
+label {
+  font-size: 1rem;
+  margin: 2% auto;
+}
+
+
+
+form > input, .form-inputs>.add-class input, .form-group>.form-control {
+  background-color: #ddeffa;
+  border: 0;
+  padding: 10px 0 10px 10px;
+  font-size: 1rem;
+  width: 70%;
+  outline: 0;
+  color: #7a7676;
+  border-bottom: 1px solid #2366f7;
+  margin: 1% auto;
+  border-radius: 10px 0 10px 0;
+}
+
+.edit-class>.form-group input, .edit-class>.form-group select, .edit-class>.form-group textarea {
+  width: 100%;
+}
+
+.form-inputs>div, .form-inputs>h2, .class-details>div, .add-punch>div div, .add-punch>h4 {
+  width: 70%;
+  margin-left: 38%;
+}
+
+.add-punch>h4 {
+ margin-top:4%;
+}
+
+form > button, .punch-passes > button {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  color: white;
+  font-size: 16px;
+  padding: 6px 14px;
+  border-radius: 0.2rem;
+  margin: 2% auto ;
+}
+
+input::placeholder {
+  color: #7a7676;
+  opacity: 1;
+}
+
+button {
+  background-color: #5a50df;
+  border: 1px solid #2c2424;
+  color: white;
+  font-size: 16px;
+  padding: 6px 14px;
+  width: 100px;
+  border-radius: 10px;
+}
+
+div > form {
+  width: 100%;
+}
+
+.btn-group > .btn {
+  margin: 1% 10%;
+}
+
+
+
+.card {
+  margin: 1% auto;
+}
+.card-img-top {
+ margin: 0 auto;
+}
+
+#root>div>div {
+  width:90%;
+  margin: 1% auto;
+  border-radius: 0.25rem;
+}
