@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
+import { useHistory } from "react-router";
 
 const InstructorAddClass = (props) => {
-  const userId = props.match.params.id
-
+  const userId = props.computedMatch.params.id;
+  const history = useHistory()
   const [addClassForm, setAddClassForm] = useState({
     name: "",
     date: "",
@@ -13,8 +14,10 @@ const InstructorAddClass = (props) => {
     intensity: "",
     location: "",
     max_size: "",
-    user_id: userId ,
+    user_id: userId,
   });
+
+  const [addFail, setAddFail] = useState("");
 
   const changeHandler = (e) => {
     const newClassForm = {
@@ -25,9 +28,18 @@ const InstructorAddClass = (props) => {
   };
 
   const submitHandler = (e) => {
-      e.preventDefault();
-      props.history.push(`/${userId}`)
-  }
+    e.preventDefault();
+    axiosWithAuth()
+      .post(`/classes/instructor`, addClassForm)
+      .then((res) => {
+        console.log(res.data);
+        history.push(`/${userId}`);
+      })
+      .catch((err) => {
+        console.log(err);
+        setAddFail(err.response.data.message);
+      });
+  };
 
   return (
     <Form>
@@ -63,13 +75,14 @@ const InstructorAddClass = (props) => {
           placeholder="Class duration in minutes"
           onChange={changeHandler}
         />
-        <Input
-          type="text"
-          name="intensity"
-          value={addClassForm.intensity}
-          placeholder="Class intesity"
-          onChange={changeHandler}
-        />
+        <Input type="select" name="intensity" onChange={changeHandler}>
+          <option value="" disabled selected>
+            Select intensity
+          </option>
+          <option value="LA">Beginner</option>
+          <option value="SF">Intermediate</option>
+          <option value="LV">Advanced</option>
+        </Input>
         <Input
           type="text"
           name="location"
@@ -84,7 +97,11 @@ const InstructorAddClass = (props) => {
           placeholder="Class max size"
           onChange={changeHandler}
         />
-        <Button color="primary" size="sm" onClick={submitHandler}> Add Class</Button>
+        <Button color="primary" size="sm" onClick={submitHandler}>
+          {" "}
+          Add Class
+        </Button>
+        {addFail ? <Alert color="warning">{addFail}, try again</Alert> : ""}
       </FormGroup>
     </Form>
   );

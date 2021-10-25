@@ -62,3 +62,11 @@
 .client .bottom>.search, .client-classes {
   width:50%;
 }
+
+.client .card-header>.btn{
+  margin-left: 40%;
+}
+
+.instructor .card-header>.btn{
+  margin: 1% auto;
+}
