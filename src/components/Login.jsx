@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Input, NavLink } from "reactstrap";
+import { Alert, Button, Form, FormGroup, Input, NavLink } from "reactstrap";
 
 function Login(props) {
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
+
+  const [loginFail, setLoginFail] = useState("")
 
   const changeHandler = (e) => {
     const newLoginForm = {
@@ -18,11 +20,21 @@ function Login(props) {
 
   const submitHandler = (e) => {
       e.preventDefault();
-    //   axios
-    //     .post("", loginForm)
-    //     .then((res) => {})
-    //     .catch((err) => console.log(err.response));
-    props.history.push('/1')
+      axios
+      .post(
+        "https://build29-fitness-be.herokuapp.com/api/auth/login",
+        loginForm
+      )
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem("token", `${res.data.token}`);
+        props.history.push(`/${res.data.userData.user_id}`);
+      })
+      .catch((err) => {
+        // console.error(err.response.data)
+        setLoginFail(err.response.data.message)
+        console.log(loginFail)
+      });
    
     };
 
@@ -45,6 +57,7 @@ function Login(props) {
         />
       </FormGroup>
       <Button color="primary" size="sm" onClick={submitHandler}>Login</Button>
+      {loginFail ? <Alert color="danger">{loginFail} try again please</Alert>:""}
       <p>New to our page? </p>
       <NavLink href="/register">Register here</NavLink>
     </Form>

@@ -1,15 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Form,
-  FormGroup,
-  Input,
-} from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 
 const Register = (props) => {
   const [registerForm, setRegisterForm] = useState({
@@ -34,13 +25,16 @@ const Register = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // axios
-    // .post("", registerForm)
-    // .then((res) => {
-
-    // })
-    // .catch((err) => console.log(err.response.data))
-    props.history.push("/2");
+    axios
+      .post(
+        "https://build29-fitness-be.herokuapp.com/api/auth/register",
+        registerForm
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        props.history.push(`/${res.data.user.user_id}`);
+      })
+      .catch((err) => console.error(err.response.data));
   };
 
   return (
@@ -68,12 +62,11 @@ const Register = (props) => {
           onChange={changeHandler}
         />
         <FormGroup>
-          <Input
-            type="select"
-            name="role"
-            onChange={changeHandler}
-          > 
-            <option value="" disabled selected> Select a role</option>
+          <Input type="select" name="role" onChange={changeHandler}>
+            <option value="" disabled selected>
+              {" "}
+              Select a role
+            </option>
             <option value="Instructor">Instructor</option>
             <option value="Client">Client</option>
           </Input>

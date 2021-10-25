@@ -8,37 +8,11 @@ import {
 } from "../actions";
 
 const initialState = {
-  user: {
-    id: 2,
-    name: "Ed",
-    role: "Instructor",
-  },
-  class: [
-    {
-      class_id: 1,
-      name: "yoga",
-      date: "10-01-21",
-      start_time: "15:00",
-      duration_mins: 45,
-      intensity: "beginner",
-      location: "LA",
-      max_size: 10,
-      user_id: 2,
-    },
-    {
-      class_id: 3,
-      name: "hiit",
-      date: "10-01-30",
-      start_time: "14:00",
-      duration_mins: 30,
-      intensity: "beginner",
-      location: "LA",
-      max_size: 9,
-      user_id: 2,
-    },
-  ],
+  user: {},
+  class: [],
   isFetching: false,
-  error: "",
+  user_error: "",
+  class_error: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -56,7 +30,7 @@ const reducer = (state = initialState, action) => {
     case FETCHING_USER_FAIL:
       return {
         ...state,
-        error: action.payload,
+        user_error: action.payload,
         isFetching: true,
       };
     case FETCHING_CLASS_START:
@@ -75,7 +49,7 @@ const reducer = (state = initialState, action) => {
     case FETCHING_CLASS_FAIL:
       return {
         ...state,
-        error: action.payload,
+        class_error: action.payload,
         isFetching: false,
       };
 
